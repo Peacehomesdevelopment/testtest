@@ -19,4 +19,6 @@
 #    If not, see <http://www.gnu.org/licenses/>.
 #
 ###############################################################################
-from . import models
+from . import sale_order
+from . import sale_recurring
+from . import sale_recurring_line
