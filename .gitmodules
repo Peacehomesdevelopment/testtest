@@ -2,3 +2,8 @@
 	path = RENBRAN/fulltest
 	url = git@github.com:RENBRAN/fulltest.git
 	branch = master
+
+[submodule "odoo/odoo"]
+	path = odoo/odoo
+	url = git@github.com:odoo/odoo.git
+	branch = 17.0
