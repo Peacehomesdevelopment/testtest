@@ -12,14 +12,14 @@
             <xpath expr="//field[@name='invoice_payment_term_id']" position="after">
                 <i
                     class="fa fa-arrow-right mx-3 text-muted pl-4 pt-1"
-                    attrs="{'invisible': ['|', ('invoice_payment_term_id', '=', False), ('invoice_date_due', '=', False)]}"
+                  options="{'invisible': ['|', ('invoice_payment_term_id', '=', False), ('invoice_date_due', '=', False)]}"
                     title="Arrow icon"
                 />
                 <field
                     class="text-muted"
                     name="invoice_date_due"
                     force_save="1"
-                    attrs="{'readonly': [('invoice_payment_term_id', '!=', False)], 'invisible': ['|', ('invoice_payment_term_id', '=', False), ('invoice_date_due', '=', False)]}"
+                    options="{'readonly': [('invoice_payment_term_id', '!=', False)], 'invisible': ['|', ('invoice_payment_term_id', '=', False), ('invoice_date_due', '=', False)]}"
                 />
             </xpath>
         </field>
