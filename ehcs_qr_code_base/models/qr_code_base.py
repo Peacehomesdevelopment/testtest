@@ -37,3 +37,11 @@ class AccountPayment(models.Model):
         qr_code_img.save(buffered, format="PNG")
         img_str = base64.b64encode(buffered.getvalue())
         return img_str
+        
+@api.depends('recipient_name', 'amount', 'payment_description')
+def _compute_qr_code(self):
+    for record in self:
+        base_url = record._generate_base_url()
+        qr_code_img = record._generate_qr_code_image(base_url)
+        record.qr_code = self._convert_image_to_binary(qr_code_img)
+
