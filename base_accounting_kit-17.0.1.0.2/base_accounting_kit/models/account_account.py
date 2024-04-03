@@ -118,20 +118,20 @@ class AccountCommonReport(models.Model):
         return self.with_context(discard_logo_check=True)._print_report(data)
 
 
-class AccountCommonJournalReport(models.TransientModel):
+class Accountjournalreport(models.TransientModel):
     """Model used for creating the common journal report"""
-    _name = 'account.common.journal.report'
+    _name = 'account.journal.report'
     _description = 'Common Journal Report'
     _inherit = "account.report"
 
     section_main_report_ids = fields.Many2many(string="Section Of",
                                                comodel_name='account.report',
-                                               relation="account_common_journal_report_section_rel",
+                                               relation="account_journal_report_section_rel",
                                                column1="sub_report_id",
                                                column2="main_report_id")
     section_report_ids = fields.Many2many(string="Sections",
                                           comodel_name='account.report',
-                                          relation="account_common_journal_report_section_rel",
+                                          relation="account_journal_report_section_rel",
                                           column1="main_report_id",
                                           column2="sub_report_id")
     amount_currency = fields.Boolean(
