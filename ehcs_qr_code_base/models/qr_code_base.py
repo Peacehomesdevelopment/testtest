@@ -2,7 +2,7 @@ import base64
 from io import BytesIO
 import qrcode
 
-from account_payment_instalment import models
+from account_payment import models
 
 class QRCodeGenerator(models.AbstractModel):
     _name = 'qr_code_generator'
@@ -14,11 +14,10 @@ class QRCodeGenerator(models.AbstractModel):
         if not 'localhost' in base_url:
             if 'http://' in base_url:
                 base_url = base_url.replace('http://', 'https://')
-        base_url = base_url + '/web#id=' + str(record.id) + '&model=' + record._name + '&view_type=form&cids='
+        base_url = base_url + '/web#id=' + str(self.id) + '&model=account.payment&view_type=form&cids='
         return base_url
 
-    @api.model # type: ignore
-    def _generate_qr_code_image(self, record, base_url):
+    def _generate_qr_code_image(self, base_url):
         # Generate QR code image
         qr_code = qrcode.QRCode(version=4, box_size=4, border=1)
         qr_code.add_data(base_url)
@@ -59,34 +58,20 @@ class AccountPayment(models.Model):
             # Convert the image to binary data and store it in the 'qr_code' field
             record.qr_code = qr_generator._convert_image_to_binary(record, qr_code_img)
         
-@api.depends('recipient_name', 'amount', 'payment_description') # type: ignore
+@api.multi # type: ignore
 def _compute_qr_code(self):
     """
-    Compute the QR code for each record based on recipient details and payment information.
-
-    This method iterates through each record, generates the base URL and QR code image,
-    and stores the binary representation of the image in the 'qr_code' field.
-
-    Args:
-        self: RecordSet of 'account.payment' model.
-
-    Returns:
-        None
+    Generate QR codes for each record in the current object.
     """
-    _logger = self.env['account.payment'].sudo()._logger
-    _logger.debug("Computing QR code for account.payment records...")
-    # Iterate through each record
-    for record in self:
-        _logger.debug(f"Computing QR code for record {record.id}")
-        # Generate the base URL for the payment
-        base_url = record._generate_base_url()
-        _logger.debug(f"Generated base URL: {base_url}")
+    records = list(self)
+    qr_generator = self.env['qr_code_generator']
+    base_urls = {record.id: qr_generator._generate_base_url(record)
+                 for record in records}
+    qr_code_imgs = {record.id: record._generate_qr_code_image(base_urls[record.id])
+                    for record in records}
 
-        # Generate the QR code image
-        qr_code_img = record._generate_qr_code_image(base_url)
-        _logger.debug("Generated QR code image")
+    for record in records:
+        record.qr_code = self._convert_image_to_binary(
+            record, qr_code_imgs[record.id])
 
-        # Convert the image to binary data and store it in the 'qr_code' field
-        record.qr_code = self._convert_image_to_binary(qr_code_img)
-        _logger.debug(f"Stored binary representation of QR code in 'qr_code' field of record {record.id}")
 
