@@ -44,19 +44,32 @@ class AccountPayment(models.Model):
         Compute the QR code for each payment record and store it in the 'qr_code' field.
         The QR code is generated using the 'qr_code_generator' model.
         """
+        print('--------------------------------------------------------------------')
+        print('Computing QR code for {} payment records'.format(len(self)))
+
         # Get the 'qr_code_generator' model
         qr_generator = self.env['qr_code_generator']
 
         # Loop through each payment record
         for record in self:
+            print('Processing payment record with ID {}'.format(record.id))
+
             # Generate the base URL for the payment
-            base_url = qr_generator._generate_base_url(record)
+            # This base URL is used to generate the QR code
+            base_url = qr_generator._generate_base_url(record) # type: ignore
+            print('Generated base URL: {}'.format(base_url))
 
-            # Generate the QR code image
-            qr_code_img = qr_generator._generate_qr_code_image(record, base_url)
+            # Generate the QR code image using the base URL
+            # The generated QR code is stored in 'qr_code_img'
+            qr_code_img = qr_generator._generate_qr_code_image(record, base_url) # type: ignore
+            print('Generated QR code image')
 
-            # Convert the image to binary data and store it in the 'qr_code' field
-            record.qr_code = qr_generator._convert_image_to_binary(record, qr_code_img)
+            # Convert the QR code image to binary data and store it in the 'qr_code' field of the payment record
+            # The converted binary data is the QR code of the payment record
+            record.qr_code = qr_generator._convert_image_to_binary(record, qr_code_img) # type: ignore
+            print('Converted QR code image to binary data and stored in payment record')
+            print('--------------------------------------------------------------------')
+<|bot|>
         
 @api.multi # type: ignore
 def _compute_qr_code(self):
