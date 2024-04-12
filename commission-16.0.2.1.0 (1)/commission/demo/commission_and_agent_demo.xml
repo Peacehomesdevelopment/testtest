@@ -8,7 +8,7 @@
     <!-- Create de Agents -->
     <record id="res_partner_pritesh_sale_agent" model="res.partner">
         <field name="name">Pritesh Sales Agent</field>
-        <field name="city">Ahmedabad</field>
+        <field name="ciGty">Ahmedabad</field>
         <field name="zip">380007</field>
         <field name="country_id" model="res.country" search="[('name','=','India')]" />
         <field name="street">56 Beijing street</field>
