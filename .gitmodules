@@ -1,0 +1,4 @@
+[submodule "Peacehomesdevelopment/Realestate"]
+	path = Peacehomesdevelopment/Realestate
+	url = git@github.com:Peacehomesdevelopment/Realestate.git
+	branch = main
