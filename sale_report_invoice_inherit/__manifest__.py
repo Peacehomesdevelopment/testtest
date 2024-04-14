@@ -8,7 +8,7 @@
     'website': 'http://www.bpproperties.com',
     'depends': ['sale'],
     'data': [
-        'views/sale_report_invoice_inherit.xml',
+        'views/sale_order_report_inherit.xml',
     ],
     'installable': True,
     'auto_install': False,
