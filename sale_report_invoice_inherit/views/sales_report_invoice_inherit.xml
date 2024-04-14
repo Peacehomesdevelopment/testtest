@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherit the sale.report_invoice_inherit view to add our modifications -->
+        <record id="sale_report_invoice_inherit" model="ir.ui.view">
+            <field name="name">sales_report_invoice_inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.report_invoice_inherit"/>
+            <field name="arch" type="xml">
+                <!-- Add the new table after the doc.signed_by field -->
+                <xpath expr="//field[@name='doc.signed_by']" position="after">
+                    <!-- Define the new table -->
+                    <table class="table table-bordered" style="width: 100%;">
+                        <!-- Define the table header -->
+                        <thead>
+                            <tr>
+                                <th>Description</th>
+                                <th>Due Date</th>
+                                <th>Due Amount</th>
+                                <th>Balance Amount</th>
+                            </tr>
+                        </thead>
+                        <!-- Define the table body -->
+                        <tbody>
+                            <!-- Filter and sort the lines by due date -->
+                            <t t-set="sorted_lines" t-value="doc.line_ids.filtered(lambda l: l.date_maturity).sorted(key=lambda l: l.date_maturity)"/>
+                            <!-- Loop through each line and display its details -->
+                            <t t-foreach="sorted_lines" t-as="line">
+                                <tr t-att-class="'bg-200 fw-bold o_line_section' if line.display_type == 'line_section' else 'fst-italic o_line_note' if line.display_type == 'line_note' else ''">
+                                    <td><span t-field="line.name"/></td>
+                                    <td><span t-field="line.date_maturity"/></td>
+                                    <td><span t-field="line.amount_currency"/></td>
+                                    <td><span t-field="line.amount_residual_currency"/></td>
+                                </tr>
+                            </t>
+                            <!-- Display the total balance -->
+                            <tr>
+                                <td colspan="3" style="text-align: right;"><strong>Total Balance</strong></td>
+                                <td><span t-field="doc.amount_residual"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
+
