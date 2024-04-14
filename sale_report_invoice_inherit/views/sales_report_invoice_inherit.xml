@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sale_report_invoice_inherit" model="ir.ui.view">
+            <field name="name">sales_report_invoice_inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.report_invoice_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='doc.signed_by']" position="after"/>
+                <template>
+                    <table class="table table-bordered" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>Description</th>
+                                <th>Due Date</th>
+                                <th>Due Amount</th>
+                                <th>Balance Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="sorted_lines" t-value="doc.line_ids.filtered(lambda line: line.date_maturity).sorted(key=lambda l: l.date_maturity)"/>
+                            <t t-foreach="sorted_lines" t-as="x2many_record">
+                                <tr t-att-class="'bg-200 fw-bold o_line_section' if x2many_record.display_type == 'line_section' else 'fst-italic o_line_note' if x2many_record.display_type == 'line_note' else ''">
+                                    <td><span t-field="x2many_record.name"/></td>
+                                    <td><span t-field="x2many_record.date_maturity"/></td>
+                                    <td><span t-field="x2many_record.amount_currency"/></td>
+                                    <td><span t-field="x2many_record.amount_residual_currency"/></td>
+                                </tr>
+                            </t>
+                            <tr>
+                                <td colspan="3" style="text-align: right;"><strong>Total Balance</strong></td>
+                                <td><span t-field="doc.amount_residual"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </template>
+            </field>
+        </record>
+    </data>
+</odoo>
