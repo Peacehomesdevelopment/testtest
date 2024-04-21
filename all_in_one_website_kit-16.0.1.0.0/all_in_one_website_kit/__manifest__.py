@@ -20,7 +20,7 @@
 ################################################################################
 {
     'name': 'All In One Website Kit',
-    'version': '16.0.1.0.0',
+    'version': '17.0.1.0.0',
     'category': 'Website',
     'summary': """All In One Website for odoo16 community edition to get 
      multiple website feature """,
