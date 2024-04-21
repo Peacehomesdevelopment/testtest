@@ -1,4 +1,4 @@
-[submodule "Peacehomesdevelopment/odoo-qr-code-payment"]
-	path = Peacehomesdevelopment/odoo-qr-code-payment
-	url = git@github.com:Peacehomesdevelopment/odoo-qr-code-payment.git
+[submodule "Peacehomesdevelopment/Realestate"]
+	path = Peacehomesdevelopment/Realestate
+	url = git@github.com:Peacehomesdevelopment/Realestate.git
 	branch = main
