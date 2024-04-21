@@ -1,6 +1,6 @@
 {
     'name': "Product QR Code Generator",
-    'version': "1.0",
+    'version': "17.0",
     'depends': ['base', 'product'],
     'author': "fabiananguiano.com",
     'category': "Product",

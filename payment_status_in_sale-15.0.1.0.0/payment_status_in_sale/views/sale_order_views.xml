@@ -14,31 +14,34 @@
                 <field name="payment_details" widget="payment"
                        style="width: 60%"/>
                 <field name="amount_due"/>
+                <field name="amount_residual"/>
+                <field name="label"/>
+                <field name="date_,maturity"/>
             </xpath>
             <xpath expr="//sheet//div[hasclass('oe_button_box')]"
                    position="after">
                 <widget name="web_ribbon" title="Not Paid"
                         bg_color="bg-danger"
-                        attrs="{'invisible': [('payment_status', '!=', 'Not Paid')]}"/>
+                        options="{'invisible': [('payment_status', '!=', 'Not Paid')]}"/>
                 <widget name="web_ribbon" title="Paid"
                         bg_color="bg-success"
-                        attrs="{'invisible': [('payment_status', '!=', 'Paid')]}"/>
+                        options="{'invisible': [('payment_status', '!=', 'Paid')]}"/>
                 <widget name="web_ribbon" title="Partially Paid"
                         bg_color="bg-warning"
-                        attrs="{'invisible': [('payment_status', '!=', 'Partially Paid')]}"/>
+                        options="{'invisible': [('payment_status', '!=', 'Partially Paid')]}"/>
                 <widget name="web_ribbon" title="In Payment"
                         bg_color="bg-info"
-                        attrs="{'invisible': [('payment_status', '!=', 'In Payment')]}"/>
+                        options="{'invisible': [('payment_status', '!=', 'In Payment')]}"/>
                 <widget name="web_ribbon" title="Reversed"
                         bg_color="bg-success"
-                        attrs="{'invisible': [('payment_status', '!=', 'Reversed')]}"/>
+                        options="{'invisible': [('payment_status', '!=', 'Reversed')]}"/>
             </xpath>
             <xpath expr="//button[@name='action_confirm']"
                    position="after">
                 <button name="action_register_payment"
                         string="Register Payment" class="btn-primary"
                         type="object"
-                        attrs="{'invisible': ['|', '|', ('state', '!=', 'sale'),
+                        options="{'invisible': ['|', '|', ('state', '!=', 'sale'),
                          ('invoice_state', '!=', 'posted'),('payment_status', 'not in',
                           ('Not Paid', 'Partially Paid'))]}"/>
             </xpath>
