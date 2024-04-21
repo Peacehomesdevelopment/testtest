@@ -1,1 +1,1 @@
-from .sale_report_invoice_inherit import sale_report_inherit
+from . import models
