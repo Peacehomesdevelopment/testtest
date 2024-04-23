@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="custom_dynamic_fields_view_tree" model="ir.ui.view">
+        <field name="name">custom_dynamic_fields_view_tree</field>
+        <field name="model">dynamic.fields</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="field_description"/>
+                <field name="model_id"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id='custom_dynamic_fields_view_form' model='ir.ui.view'>
+        <field name="name">custom_dynamic_fields_view_form</field>
+        <field name="model">dynamic.fields</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="add_custom_fields" string="Create Field" type="object" class="oe_highlight"
+                    options="{'invisible': [('status', 'in', ['form','tree'])]}" groups="add_custom_fields.group_add_custom_fields_administrator"/>
+                    <button name="add_field_to_tree_view" string="Add to Tree View" type="object" class="oe_highlight"
+                    options="{'invisible': [('status', 'in', ['draft','tree'])]}" groups="add_custom_fields.group_add_custom_fields_administrator"/>
+                    <field name="status" widget="statusbar"
+                           statusbar_visible="draft,form,tree"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="Field Details">
+                            <field name="name"/>
+                            <field name="field_description"/>
+                            <field name="state" readonly="1" groups="base.group_no_one"/>
+                            <field name="model_id" options='{"no_open": True, "no_create": True}'/>
+                            <field name="field_type"/>
+                            <field name="selection_field" placeholder="[('blue', 'Blue'),('yellow', 'Yellow')]"
+                                   options="{'required': [('field_type','in',['selection','reference'])],
+                                                    'readonly': [('field_type','not in',['selection','reference'])],
+                                                    'invisible': [('field_type','not in',['selection','reference'])]}"/>
+                            <field name="ref_model_id" options='{"no_open": True, "no_create": True}' options="{'required': [('field_type','in',['many2one','many2many'])],
+                                                                'readonly': [('field_type','not in',['many2one','many2many'])],
+                                                                'invisible': [('field_type','not in',['many2one','many2many'])]}"/>
+                            <field name="widget" widget="selection"
+                                   options="{'invisible': [('field_type','not in',['binary', 'many2many', 'selection', 'float', 'many2one'])]}"/>
+                            <field name="required"/>
+                            <field name="form_view_id"/>
+                            <field name="form_view_inherit_id"/>
+                        </group>
+                        <group string="Tree View">
+                            <field name="add_field_in_tree"/>
+                            <field name="tree_view_id" options="{'invisible': [('add_field_in_tree', '=', False)],
+                                'required': [('add_field_in_tree', '=', True)]}"/>
+                            <field name="tree_view_inherit_id" options="{'invisible': [('add_field_in_tree', '=', False)]}"/>
+                        </group>
+                        <group string="Position">
+                            <field name="position_field" options='{"no_open": True, "no_create": True}'/>
+                            <field name="position"/>
+                        </group>
+                    </group>
+                    <group string="Extra Properties">
+                        <group>
+                            <field name="extra_features"/>
+                        </group>
+                        <group options="{'invisible': [('extra_features', '=', False)]}">
+                            <field name="help"/>
+                        </group>
+                        <group options="{'invisible': [('extra_features', '=', False)]}">
+                            <field name="readonly"/>
+                            <field name="store"/>
+                            <field name="index"/>
+                            <field name="copied"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id='action_dynamic_custom_fields' model='ir.actions.act_window'>
+        <field name="name">Custom Dynamic Fields</field>
+        <field name="res_model">dynamic.fields</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create New Custom Dynamic Field!
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_add_custom_fields_root"
+              name="Add Custom Dynamic Fields"
+              groups="group_add_custom_fields_user,group_add_custom_fields_administrator"
+              action="action_dynamic_custom_fields"
+              web_icon="add_custom_fields,static/web_icon.png"
+              sequence="01"
+    />
+</odoo>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Odoo QR Code Generator Module</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        h1, h2 { color: #333; }
+        p, ul { line-height: 1.5; }
+    </style>
+</head>
+<body>
+
+    
+
+    <div> 
+        <img src="qr_button_gen\static\description\qr_button_gen.gif" alt="QR Code Generator Module" />
+    </div>
+    <h1>Odoo QR Code Generator Module</h1>
+    <p>Created by Fabian Anguiano</p>
+    <p>Feel free to reach out to me if you need help <a href="mailto:fabiananguiano@gmail.com">fabiananguiano@gmail.com</a></p>
+
+    <h2>Overview</h2>
+    <p>This module extends the functionality of Odoo by adding the capability to generate QR codes for products within the <code>product.template</code> model. It allows users to generate a QR code based on specific product information, enhancing product identification and integration with other systems.</p>
+
+    <h2>Features</h2>
+    <ul>
+        <li><strong>QR Code Generation:</strong> Generates QR codes for product templates.</li>
+        <li><strong>Customizable QR Content:</strong> Use the <code>qr_code</code> field to specify the data encoded in the QR code.</li>
+        <li><strong>Easy Integration:</strong> Seamlessly integrates with the existing Product Template views.</li>
+    </ul>
+
+    <h2>Installation</h2>
+    <ol>
+        <li>Ensure you have Odoo installed on your server or local machine.</li>
+        <li>Copy or clone this module into your Odoo addons directory.</li>
+        <li>Restart the Odoo server.</li>
+        <li>Navigate to the Apps menu in the Odoo backend.</li>
+        <li>Remove the Apps filter and search for "QR Code Generator".</li>
+        <li>Install the module by clicking the Install button.</li>
+    </ol>
+
+    <h2>Usage</h2>
+    <ol>
+        <li>Navigate to the <strong>Inventory</strong> or <strong>Products</strong> module, depending on your Odoo setup.</li>
+        <li>Open a product template for editing or create a new product template.</li>
+        <li>Locate the <strong>QR Code</strong> field and enter the data you wish to encode in the QR code.</li>
+        <li>Click the <strong>Generate QR Code</strong> button to generate and display the QR code.</li>
+        <li>The generated QR code will be stored and displayed in the <strong>QR Image</strong> field.</li>
+    </ol>
+
+
+    <h2>License</h2>
+    <p>This module is licensed under the <a href="http://www.gnu.org/licenses/lgpl-3.0-standalone.html" target="_blank">LGPL-3</a> license.</p>
+
+    <p>Thank you for using our Odoo QR Code Generator Module. We hope it enhances your Odoo experience and meets your business needs.</p>
+</body>
+</html>
