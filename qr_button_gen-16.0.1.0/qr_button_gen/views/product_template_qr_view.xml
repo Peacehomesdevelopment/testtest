@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_product_template_form_inherit_qr" model="ir.ui.view">
+            <field name="name">product.template.form.inherit.qr</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <!-- Add new fields and button at the end or a specific position within the form -->
+                <xpath expr="//form/sheet" position="inside">
+                    <group>
+                        <field name="qr_code"/>
+                        <field name="qr_image" widget='image'/>
+                        <button name="generate_qr_code_button" string="Generate QR Code" type="object" class="oe_highlight"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

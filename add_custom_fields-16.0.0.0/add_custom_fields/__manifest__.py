@@ -1,0 +1,23 @@
+{
+    'name': 'Add Dynamic Custom Fields',
+    'version': '17.0.0.0',
+    'summary': 'Add various types of fields in your odoo 15 instance',
+    'description': 'All in One Dynamic Fields, All in One Custom Fields, Dynamic Fields, Custom Fields, Create Fields Dynamically',
+    'category': 'Extra Tools',
+    'author': 'Doyenhub Software Solution',
+    'company': 'Doyenhub Software Solution',
+    'maintainer': 'Doyenhub Software Solution',
+    'license': 'LGPL-3',
+    'depends': ['base'],
+    'data': [
+        'data/widget_data.xml',
+        'security/security.xml',
+        'security/ir.model.access.csv',
+        'views/dynamic_fields.xml',
+    ],
+    'images': ['static/description/banner.png'],
+    'installable': True,
+    'auto_install': False,
+    'application': True,
+    'website':'https://www.doyenhub.com/',
+}
