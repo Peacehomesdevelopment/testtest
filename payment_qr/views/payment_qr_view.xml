@@ -1,33 +1,21 @@
-{
- "cells": [
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "id": "fe3b064b-3e06-403f-8923-70bc7654c29e",
-   "metadata": {},
-   "outputs": [],
-   "source": []
-  }
- ],
- "metadata": {
-  "kernelspec": {
-   "display_name": "Python 3 (ipykernel)",
-   "language": "python",
-   "name": "python3"
-  },
-  "language_info": {
-   "codemirror_mode": {
-    "name": "ipython",
-    "version": 3
-   },
-   "file_extension": ".py",
-   "mimetype": "text/x-python",
-   "name": "python",
-   "nbconvert_exporter": "python",
-   "pygments_lexer": "ipython3",
-   "version": "3.10.12"
-  }
- },
- "nbformat": 4,
- "nbformat_minor": 5
-}
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="account_payment_form_qr_inherit" model="ir.ui.view">
+            <field name="name">account.payment.form.qr.inherit</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='main_group']" position="inside">
+                    <group>
+                        <field name="qr_code" attrs="{'invisible': [('qr_code', '=', False)]}"/>
+                        <div attrs="{'invisible': [('qr_code', '!=', False)]}">
+                            <field name="qr_code" widget="html"/>
+                        </div>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
+
