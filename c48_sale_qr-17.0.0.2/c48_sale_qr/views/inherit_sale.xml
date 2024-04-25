@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="quotation_form_inherit" model="ir.ui.view">
+        <field name="name">quotation.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <field name="user_id" position="after">
+                <field name="qr" widget="image" options="{'size': [150, 150]}" />
+                
+            </field>
+        </field>
+    </record>
+
+</odoo>
