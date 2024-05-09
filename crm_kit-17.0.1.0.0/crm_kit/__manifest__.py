@@ -40,7 +40,7 @@
     ],
     'assets': {
         'web.assets_backend': [
-            'crm_kit/js/action_manager.js',
+            'crm_kit/static/js/action_manager.js',
         ],
     },
     'images': [
