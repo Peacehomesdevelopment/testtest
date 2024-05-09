@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 #############################################################################
+#    A part of OpenHRMS Project <https://www.openhrms.com>
 #
 #    Cybrosys Technologies Pvt. Ltd.
 #
 #    Copyright (C) 2024-TODAY Cybrosys Technologies(<https://www.cybrosys.com>)
-#    Author: Jumana Haseen (odoo@cybrosys.com)
+#    Author: Cybrosys Techno Solutions(<https://www.cybrosys.com>)
 #
 #    You can modify it under the terms of the GNU LESSER
 #    GENERAL PUBLIC LICENSE (LGPL v3), Version 3.
@@ -20,33 +21,29 @@
 #
 #############################################################################
 {
-    'name': 'Customer/ Supplier Payment Statement Report',
+    'name': 'OpenHRMS Employee Info',
     'version': '17.0.1.0.0',
-    'category': 'Productivity',
-    'summary': """Customer/ Supplier Payment Statement Report is designed to 
-     manage all customer and/or supplier payment statement reports.""",
-    'description': """ This module help you to get Customer/ Supplier
-     Payment Statement Report, auto send monthly statement to customer and 
-     enables option to share pdf and excel report""",
-    'author': 'Cybrosys Techno Solutions',
+    'category': 'Human Resources',
+    'summary': """Adding Advanced Fields In Employee Master""",
+    'description': 'This module helps you to add more information '
+                   'in employee records.',
+    'live_test_url': 'https://youtu.be/eEecchfl-Q4',
+    'author': 'Cybrosys Techno solutions,Open HRMS',
     'company': 'Cybrosys Techno Solutions',
     'maintainer': 'Cybrosys Techno Solutions',
-    'website': "https://www.cybrosys.com",
-    'depends': ['base', 'account', 'contacts'],
+    'website': "https://cybrosys.com, https://www.openhrms.com",
+    'depends': ['hr', 'mail', 'hr_gamification', 'hr_contract'],
     'data': [
+        'security/ir.model.access.csv',
+        'data/hr_employee_relation_data.xml',
         'data/ir_cron_data.xml',
-        'views/res_partner_views.xml',
-        'report/res_partner_reports.xml',
-        'report/res_partner_templates.xml',
+        'views/hr_contract_views.xml',
+        'views/res_config_settings_views.xml',
+        'views/hr_employee_views.xml',
     ],
-    'assets': {
-        'web.assets_backend': [
-            '/statement_report/static/js/action_manager.js',
-        ]
-    },
-    'images': ['static/description/banner.png'],
+    'images': ['static/description/banner.jpg'],
     'license': 'LGPL-3',
-    'auto_install': False,
     'installable': True,
-    'application': False
+    'auto_install': False,
+    'application': False,
 }
