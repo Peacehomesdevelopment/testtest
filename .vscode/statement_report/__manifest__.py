@@ -41,7 +41,7 @@
     ],
     'assets': {
         'web.assets_backend': [
-            '/statement_report/static/src/js/action_manager.js',
+            '/statement_report/static/js/action_manager.js',
         ]
     },
     'images': ['static/description/banner.png'],
