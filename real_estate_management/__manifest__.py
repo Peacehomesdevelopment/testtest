@@ -53,10 +53,11 @@
             'real_estate_management/static/src/js/property_item.js',
         ],
         'web.assets_backend': [
-            'real_estate_management/static/src/components/**/*.js',
-            'real_estate_management/static/src/components/**/*.xml',
-            'real_estate_management/static/src/components/**/*.scss',
-        ],
+            'real_estate_management/static/src/components/chart_renderer/chart_renderer.js',
+            'real_estate_management/static/src/components/chart_renderer/chart_renderer.xml',
+            'Peacehomesdevelopment/testtest/real_estate_management/static/src/components/kpi_card/sales_dashboard.js',
+            'Peacehomesdevelopment/testtest/real_estate_management/static/src/components/sales_dashboard.xml',
+       ],
     },
     'demo': [
         
