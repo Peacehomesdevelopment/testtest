@@ -49,7 +49,7 @@ class PropertyRental(models.Model):
                              help='The starting date of the rent')
     end_date = fields.Date(string='End Date', required=True,
                            help='The Ending date of the rent')
-    invoice_count = fields.Integer(strinf='Invoice Count',
+    invoice_count = fields.Integer(string='Invoice Count',
                                    compute='_compute_invoice_count',
                                    help='The Invoices related to this rental')
     rental_bills_ids = fields.One2many('rental.bill', 'rental_id')
