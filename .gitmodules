@@ -1,9 +1,0 @@
-[submodule "Peacehomesdevelopment/odoo"]
-	path = Peacehomesdevelopment/odoo
-	url = git@github.com:Peacehomesdevelopment/odoo.git
-	branch = 17.0
-
-[submodule "Peacehomesdevelopment/odoo"]
-	path = Peacehomesdevelopment/odoo
-	url = git@github.com:Peacehomesdevelopment/odoo.git
-	branch = 17.0
